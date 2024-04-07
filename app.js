@@ -1,8 +1,16 @@
-let x = 20;
-let y = 30;
-console.log(x + y);
+//core modules of node.
+//http:- Hyper Text Transfer Protocol
+// https:- Hyper Text Transfer Protocol Secure
+// fs:- File System
+// path
+// os
 
-// writing our first node program
+//creating our first node server
 
-const fs = require("fs");
-fs.writeFileSync("message.txt", "This message is from Node.js");
+const http = require("http");
+const server = http.createServer((req, res) => {
+  console.log(req);
+  //   console.log(res);
+});
+
+server.listen(2000);
