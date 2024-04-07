@@ -1,16 +1,27 @@
-//Sending Response
+//Routing requests :- working
+//Redirecting requests
+//Parsing requests
 
 const http = require("http");
+
 const server = http.createServer((req, res) => {
-  //   console.log(req.url, req.method, req.headers);
+  const url = req.url;
+  if (url === "/") {
+    res.write("<html>");
+    res.write("<head><title>Home page</title></head>");
+    res.write("<body><h1>This is home route</h1></body>");
+    res.write("</html>");
+    return res.end();
+  }
   res.setHeader("Context-Type", "text/html");
   res.write("<html>");
-  res.write("<head><title>Node.js</title></head>");
-  res.write(
-    "<body><h1>Hello this is created form our node.js server</h1></body>"
-  );
+  res.write("<head><title>server page</title></head>");
+  res.write("<body><h1>Hellow from node.js server</h1></body>");
   res.write("</html>");
-  res.end(); //after res.end() if we write res.write then node is gonna throw error
+  res.end();
 });
 
-server.listen(2000);
+server.listen(3000);
+
+//doing this we will get error cannot set headers after they are sent to the client
+//to resolve this we have to add return before the res.end();
